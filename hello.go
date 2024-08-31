@@ -1,16 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-const englishHelloPrefix = "Hello, "
+const enHelloPrefix = "Hello, "
+const uaHelloPrefix = "Привіт, "
 
-func Hello(name string) string {
+func Hello(name, locale string) string {
 	if name == "" {
 		name = "World"
 	}
-	return englishHelloPrefix + name
+	if locale == "ua" {
+		return uaHelloPrefix + name
+	}
+	return enHelloPrefix + name
 }
 
 func main() {
-	fmt.Println(Hello("world"))
+	fmt.Println(Hello("World", "en"))
 }
