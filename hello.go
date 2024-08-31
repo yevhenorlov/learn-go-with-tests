@@ -4,17 +4,27 @@ import (
 	"fmt"
 )
 
-const enHelloPrefix = "Hello, "
-const uaHelloPrefix = "Привіт, "
+func GetPrefix(locale string) (prefix string) {
+	const enHelloPrefix = "Hello, "
+	const uaHelloPrefix = "Привіт, "
+	const nlHelloPrefix = "Hoi, "
+	switch locale {
+	case "ua":
+		prefix = uaHelloPrefix
+	case "nl":
+		prefix = nlHelloPrefix
+	case "en":
+	default:
+		prefix = enHelloPrefix
+	}
+	return
+}
 
 func Hello(name, locale string) string {
 	if name == "" {
 		name = "World"
 	}
-	if locale == "ua" {
-		return uaHelloPrefix + name
-	}
-	return enHelloPrefix + name
+	return GetPrefix(locale) + name
 }
 
 func main() {
